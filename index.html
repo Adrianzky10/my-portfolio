@@ -367,15 +367,15 @@
                 
             </div>
             <div class="contact-right">
-                <form action="#" method="post">
+                <form id="form-message">
                     <div>
-                        <input type="text" name="name" id="name" placeholder="Name">
+                        <input type="text" name="name" id="name" placeholder="Name" required>
                     </div>
                     <div>
-                        <input type="email" name="email" id="email" placeholder="Email">
+                        <input type="email" name="email" id="email" placeholder="Email" required>
                     </div>
                     <div>
-                        <textarea name="message" id="message" placeholder="Message" cols="30" rows="10"></textarea>
+                        <textarea name="message" id="message" placeholder="Message" cols="30" rows="10" required></textarea>
                     </div>
                     <div>
                         <button type="submit">Submit</button>
@@ -385,6 +385,19 @@
         </div>
      </section>
     <!-- Contact Section End -->
+     
+    <section id="message" class="messages">
+        <div class="main-container">
+            <button id="clear">Delete all Message</button>
+            <div id="message-container">
+                <!-- <div class="box-message">
+                    <h4>Adrian Dwi</h4>
+                    <a href="#">adriandwii14022@gmail.com</a>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas numquam quaerat voluptatem nemo praesentium officiis!</p>
+                </div> -->
+            </div>
+        </div>
+    </section>
 
      <footer>
         <div class="social-media-icon">
