@@ -367,15 +367,23 @@
                 
             </div>
             <div class="contact-right">
+                <div class="not-success">
+                    <i data-feather="alert-circle" class="alert-icon"></i>
+                    <p>Form tidak boleh ada yang kosong!</p>
+                </div>
+                <div class="success">
+                    <i data-feather="alert-circle" class="alert-icon"></i>
+                    <p>Form berhasil terkirim!”</p>
+                </div>
                 <form id="form-message">
                     <div>
-                        <input type="text" name="name" id="name" placeholder="Name" required>
+                        <input type="text" name="name" id="name" placeholder="Name">
                     </div>
                     <div>
-                        <input type="email" name="email" id="email" placeholder="Email" required>
+                        <input type="email" name="email" id="email" placeholder="Email">
                     </div>
                     <div>
-                        <textarea name="message" id="message" placeholder="Message" cols="30" rows="10" required></textarea>
+                        <textarea name="message" id="message" placeholder="Message" cols="30" rows="10"></textarea>
                     </div>
                     <div>
                         <button type="submit">Submit</button>
@@ -388,7 +396,7 @@
      
     <section id="message" class="messages">
         <div class="main-container">
-            <button id="clear">Delete all Message</button>
+            <button id="clear">Delete all history</button>
             <div id="message-container">
                 <!-- <div class="box-message">
                     <h4>Adrian Dwi</h4>

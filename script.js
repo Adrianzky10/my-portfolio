@@ -33,7 +33,6 @@ const inputNama = document.querySelector('#name');
 const inputEmail = document.querySelector('#email');
 const inputMessage = document.querySelector('#message');
 const messageContainer = document.querySelector('#message-container');
-const clearBtn = document.querySelector('#clear');
 
 // MENAMPILKAN PESAN KE DALAM HALAMAN
 function renderMessage(name, email, message) {
@@ -41,14 +40,14 @@ function renderMessage(name, email, message) {
   newBox.classList.add('box-message');
 
   const nameText = document.createElement('h4');
-  nameText.textContent = name;
+  nameText.textContent = `Message from ${name}`;
 
   const emailText = document.createElement('a');
-  emailText.href = `mailto:${email}`;
-  emailText.textContent = email;
+  emailText.href = `mailto: ${email}`;
+  emailText.innerHTML = `<b>email: </b> ${email}`;
 
   const messageText = document.createElement('p');
-  messageText.textContent = message;
+  messageText.innerHTML = `<strong>Message</strong>: ${message}`;
 
   newBox.append(nameText, emailText, messageText);
   messageContainer.append(newBox);
@@ -59,33 +58,48 @@ form.addEventListener('submit', (e) => {
   const name = inputNama.value;
   const email = inputEmail.value;
   const message = inputMessage.value;
+  //Untuk alert
+  const notAlert = document.querySelector('.not-success');
+  const successAlert = document.querySelector('.success');
+  if (!name || !email || !message) {
+    notAlert.classList.add('active');
+    setTimeout(() => {
+      notAlert.classList.remove('active');
+    }, 3000);
+    return;
+  }else  {
+    successAlert.classList.add('active');
+  }
   //buat objek pesan
   const newMessage = {name, email, message};
   // Ambil data lama dari localStorage
   const storedMessages = JSON.parse(localStorage.getItem('messages')) || [];
   // Tambahkan pesan baru ke array
   storedMessages.push(newMessage);
-  // Simpan kembali ke localStorage
+  // Simpan lagi ke localStorage
   localStorage.setItem('messages', JSON.stringify(storedMessages));
-  // Tampilkan langsung ke halaman
+  // Tampilkan pesan ke halaman
   renderMessage(name, email, message);
   form.reset();
+  setTimeout(() => {
+    successAlert.classList.remove('active');
+  }, 3000)
+
 });
 
-// Saat halaman pertama kali dibuka, tampilkan pesan dari localStorage
+// agar tidak hilang jika di load
 window.addEventListener('DOMContentLoaded', () => {
   const storedMessages = JSON.parse(localStorage.getItem('messages')) || [];
   storedMessages.forEach(msg => {
-    renderMessage(msg.name, msg.email, msg.message)
+    renderMessage(msg.name, msg.email, msg.message);
   });
 
-    //TOMBOL MENGHAPUS SEMUSA PESAN
-  clearBtn.addEventListener('click', () => {
-  const confirmClear = confirm("Yakin ingin menghapus semua pesan?");
-    if (confirmClear) {
+  //Delete Message
+  const clearMsgBtn = document.querySelector('#clear');
+  clearMsgBtn.addEventListener('click', () => {
+    if (confirm('Yakin ingin menghapus semua pesan?')) {
       localStorage.removeItem('messages');
-      location.reload();
+      messageContainer.innerHTML = '';
     }
-  });
-})
-
+  })
+});
